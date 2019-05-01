@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+ <link rel="stylesheet" href="./stylesheets/tables.css">
+ <script src="./javascripts/dbconnect.js"></script>
+</head>
+<body>
+<% include partials/menu %>
+
+
+
+<div class="container-fluid bg-3 text-center">
+  <h3><%= page %></h3><br>
+  <form action="/rate" method="POST" class="form-inline">
+    <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="score" name="score" min="1" max="5" placeholder="Score 1-5">
+    <select class="custom-select mr-sm-2" id="editrating" name="editrating">
+            <option selected>Rate which recipe...</option>
+            <% for(var i=0; i < preparelist.rows.length; i++) { %>
+                <option value="<%= preparelist.rows[i].id %>"><%= preparelist.rows[i].recipe_name %></option>
+            <% } %> 
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+<% include partials/script %>
+</html>

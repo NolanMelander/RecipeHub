@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+ <link rel="stylesheet" href="./stylesheets/tables.css">
+ <script src="./javascripts/dbconnect.js"></script>
+</head>
+<body>
+<% include partials/menu %>
+
+
+
+<div class="container-fluid bg-3 text-center">
+  <h3><%= page %></h3><br>
+  <form action="/newingred" method="POST" class="form-inline">
+    <label class="sr-only" for="inlineFormInput">Ingredient</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="newingredient" name="newingredient" placeholder="Ingredient Name">
+    <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="ingredamount" name="ingredamount" placeholder="Ingredient Amount">
+    <select class="custom-select mr-sm-2" id="measure" name="measure">
+            <option selected>Choose...</option>
+            <% for(var i=0; i < measure.rows.length; i++) { %>
+                <option value="<%= measure.rows[i].id %>"><%= measure.rows[i].size %></option>
+            <% } %> 
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<section id="tabs" class="project-tab">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <nav>
+                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Current Ingredients</a>
+                  </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <table class="table" cellspacing="0">
+                          <thead>
+                              <tr>
+                                  <th>Ingredient</th>
+                                  <th>Quanity</th>
+                                  <th>Measurement</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <% for(var i =0; i < tableresults.rows.length; i++) { %>
+                              <tr>
+                                  <td><a href="#"><%= tableresults.rows[i].ingredient_name %></a></td>
+                                  <td><%= tableresults.rows[i].amount %></td>
+                                  <td><%= tableresults.rows[i].size %></td>
+                              </tr>
+                              <% } %>
+                            
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+</body>
+<% include partials/script %>
+</html>

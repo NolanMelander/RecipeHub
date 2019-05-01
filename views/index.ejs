@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %> 
+    <link rel="stylesheet" href="./stylesheets/tables.css">
+</head>
+<body>
+    <% include partials/menu %>
+
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Recently Added Recipes</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Most Popular Recipes</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Creator</th>
+                                    <th>Recipe Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i =0; i < justadded.rows.length; i++) { %>
+                                        <tr>
+                                            <td><%= justadded.rows[i].username %></td>
+                                            <td><a href="#"><%= justadded.rows[i].recipe_name %></a></td>
+                                        </tr>
+                                        <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Recipe Creator</th>
+                                    <th>Recipe Name</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                        <% for(var i =0; i < justadded.rows.length; i++) { %>
+                                            <tr>
+                                                <td><%= justadded.rows[i].username %></td>
+                                                <td><a href="#"><%= justadded.rows[i].recipe_name %></a></td>
+                                                <td><%= justadded.rows[i].total %></td>
+                                            </tr>
+                                        <% } %>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<% include partials/script %>
+</html>

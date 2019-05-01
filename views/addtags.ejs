@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+ <link rel="stylesheet" href="./stylesheets/tables.css">
+ <script src="./javascripts/dbconnect.js"></script>
+</head>
+<body>
+<% include partials/menu %>
+
+
+
+<div class="container-fluid bg-3 text-center">
+  <h3><%= page %></h3><br>
+  <form action="/add" method="POST" class="form-inline">
+    <label class="sr-only" for="inlineFormInput">Tag</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="newtag" name="newtag" placeholder="Tag Name">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<section id="tabs" class="project-tab">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <nav>
+                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Currently Added Tags</a>
+                  </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <table class="table" cellspacing="0">
+                          <thead>
+                              <tr>
+                                  <th>Tag</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <% for(var i =0; i < tableresults.rows.length; i++) { %>
+                              <tr>
+                                  <td><a href="#"><%= tableresults.rows[i].tag_name %></a></td>
+                              </tr>
+                              <% } %>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+</body>
+<% include partials/script %>
+</html>

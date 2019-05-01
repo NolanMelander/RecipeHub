@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+</head>
+<body>
+<% include partials/menu %>
+
+<div class="container-fluid bg-3">
+    <h3><%= page %></h3><br>
+    <form action="/recipe3" method="POST" class="form-inline">
+      <label class="sr-only" for="inlineFormInput">Create Recipe</label>
+      <input type="text" class="form-control col-sm-9" id="recipename" name="recipename" placeholder="recipename">
+      <% var direction = ['direction1', 'direction2', 'direction3', 'direction4', 'direction5', 'direction6', 'direction7', 'direction8', 'direction9', 'direction10'] 
+       for(var i=0; i < steps; i++) { %>
+        <div class= "col-sm-10">
+          <textarea class="form-control" id="<%=direction[i] %>" rows="3" name="<%=direction[i]%>" placeholder="Enter <%= direction[i]%>"></textarea>
+        </div>
+      <% } %>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+<% include partials/script %>
+</html>
